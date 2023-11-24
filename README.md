@@ -5,7 +5,7 @@
 [license-img]: http://img.shields.io/badge/license-MIT-brightgreen.svg
 [license]: http://opensource.org/licenses/MIT
 
-> LinkedIn OAuth2 strategy for Überauth.
+> LinkedIn v2 OAuth2 strategy for Überauth.
 
 ## Installation
 
@@ -16,14 +16,6 @@
     ```elixir
     def deps do
       [{:ueberauth_linkedin, "~> 0.1.0"}]
-    end
-    ```
-
-1. Add the strategy to your applications:
-
-    ```elixir
-    def application do
-      [applications: [:ueberauth_linkedin]]
     end
     ```
 
@@ -79,15 +71,15 @@ Or with scope:
 
     /auth/linkedin?state=csrf_token_here&scope=r_emailaddress
 
-By default the requested scope is "r_basicprofile r_emailaddress". Scope can be configured either explicitly as a `scope` query value on the request path or in your configuration:
+By default the requested scope is "openid profile email". Scope can be configured either explicitly as a `scope` query value on the request path or in your configuration:
 
 ```elixir
 config :ueberauth, Ueberauth,
   providers: [
-    linkedin: {Ueberauth.Strategy.LinkedIn, [default_scope: "r_basicprofile r_emailaddress"]}
+    linkedin: {Ueberauth.Strategy.LinkedIn, [default_scope: "openid profile email"]}
   ]
 ```
 
 ## License
 
-Please see [LICENSE](https://github.com/fajarmf/ueberauth_linkedin/blob/master/LICENSE) for licensing details.
+Please see [LICENSE](https://github.com/utf26/ueberauth_linkedin/blob/main/LICENSE) for licensing details.
