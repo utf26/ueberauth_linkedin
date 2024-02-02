@@ -120,7 +120,7 @@ defmodule Ueberauth.Strategy.LinkedIn do
       {:ok, %OAuth2.Response{status_code: 200, body: user}} ->
         put_private(conn, :linkedin_user, user)
 
-      {:ok, %OAuth2.Response{status_code: status_code, body: body}} when status_code not in 200..299 ->
+      {:ok, %OAuth2.Response{status_code: status_code, body: _body}} when status_code not in 200..299 ->
         set_errors!(conn, [error("LinkedIn API error", "Failed to fetch user data")])
 
       {:ok, %OAuth2.Response{status_code: 401, body: _body}} ->
