@@ -1,20 +1,20 @@
 defmodule UeberauthLinkedIn.MixProject do
   use Mix.Project
 
-  @url "https://github.com/utf26/ueberauth_linkedin"
+  @source_url "https://github.com/utf26/ueberauth_linkedin"
 
   def project do
     [
       app: :ueberauth_linkedin,
-      version: "1.1.0",
+      version: "0.10.7",
       elixir: "~> 1.15",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,
       name: "UeberauthLinkedIn",
       description: description(),
       package: package(),
-      source_url: @url,
-      homepage_url: @url,
+      source_url: @source_url,
+      homepage_url: @source_url,
       deps: deps(),
       docs: docs()
     ]
@@ -41,16 +41,18 @@ defmodule UeberauthLinkedIn.MixProject do
       name: "ueberauth_linkedin_modern",
       maintainers: ["Babar Saleh Hayat"],
       licenses: ["MIT"],
-      links: %{"GitHub" => @url}
+      links: %{"GitHub" => @source_url}
     ]
   end
 
   defp docs do
-    [extras: docs_extras(), main: "readme"]
-  end
-
-  defp docs_extras do
-    ["README.md"]
+    [
+      extras: ["CHANGELOG.md", "CONTRIBUTING.md", "README.md"],
+      main: "readme",
+      source_url: @source_url,
+      homepage_url: @source_url,
+      formatters: ["html"]
+    ]
   end
 
   defp description do
