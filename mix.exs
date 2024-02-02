@@ -33,8 +33,8 @@ defmodule UeberauthLinkedIn.MixProject do
 
   defp package do
     [
+      name: "ueberauth_linkedin_modern",
       maintainers: ["Babar Saleh Hayat"],
-      organization: "VastMesh Ltd",
       licenses: ["MIT", "Apache-2.0"],
       links: %{"GitHub" => "https://github.com/utf26/ueberauth_linkedin"}
     ]
