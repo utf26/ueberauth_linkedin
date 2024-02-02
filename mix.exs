@@ -1,24 +1,29 @@
 defmodule UeberauthLinkedIn.MixProject do
   use Mix.Project
 
+  @url "https://github.com/utf26/ueberauth_linkedin"
+
   def project do
     [
       app: :ueberauth_linkedin,
-      version: "0.1.0",
+      version: "1.1.0",
       elixir: "~> 1.15",
+      build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,
-      deps: deps(),
       name: "UeberauthLinkedIn",
-      description: "LinkedIn v2 strategy for Ueberauth.",
+      description: description(),
       package: package(),
-      source_url: "https://github.com/utf26/ueberauth_linkedin"
+      source_url: @url,
+      homepage_url: @url,
+      deps: deps(),
+      docs: docs()
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :oauth2, :ueberauth]
     ]
   end
 
@@ -35,8 +40,20 @@ defmodule UeberauthLinkedIn.MixProject do
     [
       name: "ueberauth_linkedin_modern",
       maintainers: ["Babar Saleh Hayat"],
-      licenses: ["MIT", "Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/utf26/ueberauth_linkedin"}
+      licenses: ["MIT"],
+      links: %{"GitHub" => @url}
     ]
+  end
+
+  defp docs do
+    [extras: docs_extras(), main: "readme"]
+  end
+
+  defp docs_extras do
+    ["README.md"]
+  end
+
+  defp description do
+    "An Ueberauth strategy for LinkedIn V2 authentication"
   end
 end

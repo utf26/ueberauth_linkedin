@@ -15,7 +15,7 @@
 
     ```elixir
     def deps do
-      [{:ueberauth_linkedin, "~> 0.1.0"}]
+      [{:ueberauth_linkedin, "~> 1.1.0", hex: :ueberauth_linkedin_modern}]
     end
     ```
 
@@ -33,7 +33,8 @@
     ```elixir
     config :ueberauth, Ueberauth.Strategy.LinkedIn.OAuth,
       client_id: System.get_env("LINKEDIN_CLIENT_ID"),
-      client_secret: System.get_env("LINKEDIN_CLIENT_SECRET")
+      client_secret: System.get_env("LINKEDIN_CLIENT_SECRET"),
+      redirect_uri: System.get_env("LINKEDIN_REDIRECT_URI")
     ```
 
 1.  Include the Überauth plug in your controller:
@@ -54,6 +55,7 @@
 
       get "/:provider", AuthController, :request
       get "/:provider/callback", AuthController, :callback
+      post "/:provider/callback", AuthController, :callback
     end
     ```
 
