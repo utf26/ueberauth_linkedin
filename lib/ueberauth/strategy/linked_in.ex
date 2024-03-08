@@ -33,7 +33,8 @@ defmodule Ueberauth.Strategy.LinkedIn do
   """
   def handle_callback!(%Plug.Conn{params: %{"code" => code}} = conn) do
     module = option(conn, :oauth2_module)
-    token = apply(module, :get_token!, [[code: code]])
+    args = [[code: code] |> with_redirect_uri(conn)]
+    token = apply(module, :get_token!, args)
 
     if token.access_token == nil do
       set_errors!(conn, [
