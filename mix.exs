@@ -6,7 +6,7 @@ defmodule UeberauthLinkedIn.MixProject do
   def project do
     [
       app: :ueberauth_linkedin,
-      version: "0.10.7",
+      version: "0.10.8",
       elixir: "~> 1.15",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,

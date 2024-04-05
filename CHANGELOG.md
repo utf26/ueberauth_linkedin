@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.10.8 - 2024-04-05
+
+### Enhancements
+
+- Fixed: redirect_uri not sent in callback phase if not configured explicitly
+
 ## v0.10.7 - 2024-02-02
 
 ### Enhancements

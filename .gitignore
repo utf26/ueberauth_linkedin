@@ -25,3 +25,4 @@ ueberauth_linkedin-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 .idea
+.DS_Store
