@@ -124,7 +124,7 @@ defmodule Ueberauth.Strategy.LinkedIn do
       {:ok, %OAuth2.Response{status_code: status_code, body: _body}} when status_code not in 200..299 ->
         set_errors!(conn, [error("LinkedIn API error", "Failed to fetch user data")])
 
-      {:ok, %OAuth2.Response{status_code: 401, body: _body}} ->
+      {:error, %OAuth2.Response{status_code: 401, body: _body}} ->
         set_errors!(conn, [error("token", "unauthorized")])
 
       {:error, %OAuth2.Response{status_code: 403, body: body}} ->
