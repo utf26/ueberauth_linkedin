@@ -5,10 +5,10 @@ defmodule Ueberauth.Strategy.LinkedIn do
   @user_url "https://api.linkedin.com/v2/userinfo"
 
   use Ueberauth.Strategy,
-      uid_field: :id,
-      default_scope: "openid profile email",
-      send_redirect_uri: true,
-      oauth2_module: Ueberauth.Strategy.LinkedIn.OAuth
+    uid_field: :id,
+    default_scope: "openid profile email",
+    send_redirect_uri: true,
+    oauth2_module: Ueberauth.Strategy.LinkedIn.OAuth
 
   alias Ueberauth.Auth.Info
   alias Ueberauth.Auth.Credentials
@@ -98,7 +98,7 @@ defmodule Ueberauth.Strategy.LinkedIn do
       first_name: user["given_name"],
       last_name: user["family_name"],
       image: user["picture"],
-      email: user["email"],
+      email: user["email"]
     }
   end
 
@@ -109,7 +109,7 @@ defmodule Ueberauth.Strategy.LinkedIn do
     %Extra{
       raw_info: %{
         token: conn.private.linkedin_token,
-        user: conn.private.linkedin_user,
+        user: conn.private.linkedin_user
       }
     }
   end
@@ -121,7 +121,8 @@ defmodule Ueberauth.Strategy.LinkedIn do
       {:ok, %OAuth2.Response{status_code: 200, body: user}} ->
         put_private(conn, :linkedin_user, user)
 
-      {:ok, %OAuth2.Response{status_code: status_code, body: _body}} when status_code not in 200..299 ->
+      {:ok, %OAuth2.Response{status_code: status_code, body: _body}}
+      when status_code not in 200..299 ->
         set_errors!(conn, [error("LinkedIn API error", "Failed to fetch user data")])
 
       {:ok, %OAuth2.Response{status_code: 401, body: _body}} ->

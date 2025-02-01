@@ -8,7 +8,7 @@ defmodule UeberauthLinkedIn.MixProject do
       app: :ueberauth_linkedin,
       version: "0.10.8",
       elixir: "~> 1.15",
-      build_embedded: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       name: "UeberauthLinkedIn",
       description: description(),

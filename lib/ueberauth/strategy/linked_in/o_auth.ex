@@ -60,7 +60,19 @@ defmodule Ueberauth.Strategy.LinkedIn.OAuth do
     headers = Keyword.get(options, :headers, [])
     options = Keyword.get(options, :options, [])
     client_options = Keyword.get(options, :client_options, [])
-    client = OAuth2.Client.get_token!(client(client_options), params, headers, options)
+
+    client = client(client_options)
+
+    params_in_opts =
+      Keyword.merge(params,
+        client_id: client.client_id,
+        client_secret: client.client_secret,
+        grant_type: "authorization_code"
+      )
+
+    options = Keyword.put(options, :params, params_in_opts)
+
+    client = OAuth2.Client.get_token!(client, [], headers, options)
     client.token
   end
 
@@ -70,11 +82,11 @@ defmodule Ueberauth.Strategy.LinkedIn.OAuth do
     OAuth2.Strategy.AuthCode.authorize_url(client, params)
   end
 
-  def get_token(client, params, headers) do
+  def get_token(client, _params, headers) do
     client
-    |> put_param("client_secret", client.client_secret)
     |> put_header("Accept", "application/json")
-    |> OAuth2.Strategy.AuthCode.get_token(params, headers)
+    |> put_headers(headers)
+    |> basic_auth()
   end
 
   defp check_credential(config, key) do
