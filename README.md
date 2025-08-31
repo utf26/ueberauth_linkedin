@@ -15,7 +15,7 @@
 
     ```elixir
     def deps do
-      [{:ueberauth_linkedin, "~> 0.10.8", hex: :ueberauth_linkedin_modern}]
+      [{:ueberauth_linkedin, "~> 1.0.0", hex: :ueberauth_linkedin_modern}]
     end
     ```
 
